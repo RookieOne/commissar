@@ -1,11 +1,13 @@
 var Lab = require('lab');
 var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;
-var Commissar = require('../../lib');
+var Commissar = require('../../lib').createTestableInstance();
 
-Commissar.define('/leaders', {
-  get: function() {
-    return ['Lenin', 'Stalin', 'Putin'];
+Commissar.defineState('/leaders', function() {
+  return {
+    get: function() {
+      return ['Lenin', 'Stalin', 'Putin'];
+    }
   }
 });
 
