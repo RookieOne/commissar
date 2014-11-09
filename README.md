@@ -9,23 +9,25 @@ Example
 var commissar = require('commissar')();
 
 // defines state using an URI format
-commissar.defineState('/message', function() {
-  var message = 'Hello Comrade!';
+commissar.defineState('/message', function(state) {
   return {
+    init: function() {
+      state.message = 'Hello Comrade!';
+    },
     get: function() {
-      return message;
+      return state.message;
     },
     set: function(value, next) {
-      message = value;
-      next(message);
+      state.message = value;
+      next(state.message);
     }
   }
 });
 
 // defines an action that can change state
-commissar.defineAction('Change Message', function(data, setState) {
-  // setState in an action is the ONLY way to change state
-  setState('/message', 'Good bye Comrade!');
+commissar.defineAction('Change Message', function(data, state) {
+  // state.set in an action is the ONLY way to change state
+  state.set('/message', 'Good bye Comrade!');
 });
 
 var message = 'Hello World';
