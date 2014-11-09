@@ -2,7 +2,7 @@ var Lab = require('lab');
 var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;
 
-lab.experiment('running query', function() {
+lab.experiment('sync action', function() {
   var Commissar = {};
 
   lab.before(function(done) {
@@ -11,10 +11,10 @@ lab.experiment('running query', function() {
     Commissar.defineState('/message', function() {
       var message = 'Hello Comrade!';
       return {
-        get: function() {
+        get: function(params) {
           return message;
         },
-        set: function(newValue, next) {
+        set: function(params, newValue, next) {
           message = newValue;
           next(message);
         }

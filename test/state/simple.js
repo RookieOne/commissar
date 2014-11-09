@@ -10,7 +10,7 @@ lab.experiment('defining state', function() {
 
     Commissar.defineState('/message', function() {
       return {
-        get: function() {
+        get: function(params) {
           return 'Hello Comrade!';
         }
       }

@@ -30,17 +30,36 @@ lab.experiment('actions', function() {
           var id = parseInt(params.id);
           var sub = _.findWhere(state.submarines, { id: id });
           return sub;
+        },
+        set: function(params, newValue, next) {
+          var id = parseInt(params.id);
+          var subs = _.reject(state.submarines, function(s) { return s.id == id; });
+          subs.push(newValue);
+          state.submarines = subs;
+          next(newValue);
         }
       }
+    });
+
+    Commissar.defineAction('Change Sub Name', function(data, state) {
+      var sub = state.get('/submarines/' + data.id);
+      sub.name = data.name;
+      state.set('/submarines/' + data.id, sub);
     });
 
     done();
   });
 
-  lab.test('define state', function(done) {
+  lab.test('update element in collection', function(done) {
+    var count = 0;
     Commissar.subscribe('/submarines/1', function(submarine) {
-      expect(submarine.name).to.equal('Red October');
-      done();
+      count += 1;
+      if (count == 2) {
+        expect(submarine.name).to.equal('Kiev');
+        done();
+      }
     });
+
+    Commissar.execute('Change Sub Name', { id: 1, name: 'Kiev' });
   });
 });

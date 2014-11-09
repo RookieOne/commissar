@@ -11,10 +11,10 @@ lab.experiment('actions', function() {
     Commissar.defineState('/submarines', function() {
       var submarines = ['Red October'];
       return {
-        get: function() {
+        get: function(params) {
           return submarines;
         },
-        set: function(newValue, next) {
+        set: function(params, newValue, next) {
           submarines = newValue;
           next(submarines);
         }

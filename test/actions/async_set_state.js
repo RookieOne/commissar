@@ -11,10 +11,10 @@ lab.experiment('running query', function() {
     Commissar.defineState('/message', function() {
       var message = 'Hello Comrade!';
       return {
-        get: function() {
+        get: function(params) {
           return message;
         },
-        set: function(newValue, next) {
+        set: function(params, newValue, next) {
           message = newValue;
           next(message);
         }

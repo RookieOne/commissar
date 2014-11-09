@@ -10,7 +10,7 @@ lab.experiment('defining state', function() {
 
     Commissar.defineState('/leaders', function() {
       return {
-        get: function() {
+        get: function(params) {
           return ['Lenin', 'Stalin', 'Putin'];
         }
       }
