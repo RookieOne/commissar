@@ -21,9 +21,9 @@ lab.experiment('running query', function() {
       }
     });
 
-    Commissar.defineAction('Get Messages', function(data, setState) {
+    Commissar.defineAction('Get Messages', function(data, state) {
       setTimeout(function() {
-        setState('/message', 'Hold up Comrade!');
+        state.set('/message', 'Hold up Comrade!');
       }, 100);
     });
 

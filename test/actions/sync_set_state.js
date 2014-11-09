@@ -21,8 +21,8 @@ lab.experiment('running query', function() {
       }
     });
 
-    Commissar.defineAction('Get Messages', function(data, setState) {
-      setState('/message', 'Good bye Comrade!');
+    Commissar.defineAction('Get Messages', function(data, state) {
+      state.set('/message', 'Good bye Comrade!');
     });
 
     done();
