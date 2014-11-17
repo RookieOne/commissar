@@ -17,11 +17,10 @@ lab.experiment('actions', function() {
         get: function(params) {
           return state.submarines;
         },
-        set: function(params, newValue, next) {
+        set: function(params, newValue) {
           state.submarines = newValue;
-          next(submarines);
         }
-      }
+      };
     });
 
     Commissar.defineState('/submarines/:id', function(state) {

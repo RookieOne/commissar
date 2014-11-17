@@ -14,9 +14,8 @@ lab.experiment('actions', function() {
         get: function(params) {
           return submarines;
         },
-        set: function(params, newValue, next) {
+        set: function(params, newValue) {
           submarines = newValue;
-          next(submarines);
         }
       };
     });

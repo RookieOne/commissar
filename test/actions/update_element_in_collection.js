@@ -17,9 +17,8 @@ lab.experiment('actions', function() {
         get: function(params) {
           return state.submarines;
         },
-        set: function(params, newValue, next) {
+        set: function(params, newValue) {
           state.submarines = newValue;
-          next(submarines);
         }
       };
     });
@@ -31,14 +30,13 @@ lab.experiment('actions', function() {
           var sub = _.findWhere(state.submarines, { id: id });
           return sub;
         },
-        set: function(params, newValue, next) {
+        set: function(params, newValue) {
           var id = parseInt(params.id);
           var subs = _.reject(state.submarines, function(s) { return s.id == id; });
           subs.push(newValue);
           state.submarines = subs;
-          next(newValue);
         }
-      }
+      };
     });
 
     Commissar.defineAction('Change Sub Name', function(data, state) {

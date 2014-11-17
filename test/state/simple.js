@@ -13,7 +13,7 @@ lab.experiment('defining state', function() {
         get: function(params) {
           return 'Hello Comrade!';
         }
-      }
+      };
     });
 
     done();

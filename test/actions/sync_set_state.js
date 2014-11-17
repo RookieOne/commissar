@@ -14,11 +14,10 @@ lab.experiment('sync action', function() {
         get: function(params) {
           return message;
         },
-        set: function(params, newValue, next) {
+        set: function(params, newValue) {
           message = newValue;
-          next(message);
         }
-      }
+      };
     });
 
     Commissar.defineAction('Get Messages', function(data, state) {
