@@ -6,7 +6,7 @@ lab.experiment('running query', function() {
   var Commissar = {};
 
   lab.before(function(done) {
-    Commissar = require('../../lib')();
+    Commissar = require('../../lib').createInstance();
 
     Commissar.defineState('/message', function() {
       var message = 'Hello Comrade!';
@@ -18,7 +18,7 @@ lab.experiment('running query', function() {
           message = newValue;
           next(message);
         }
-      }
+      };
     });
 
     Commissar.defineAction('Get Messages', function(data, state) {

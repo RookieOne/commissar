@@ -6,7 +6,7 @@ lab.experiment('sync action', function() {
   var Commissar = {};
 
   lab.before(function(done) {
-    Commissar = require('../../lib')();
+    Commissar = require('../../lib').createInstance();
 
     Commissar.defineState('/message', function() {
       var message = 'Hello Comrade!';

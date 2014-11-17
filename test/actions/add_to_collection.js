@@ -6,7 +6,7 @@ lab.experiment('actions', function() {
   var Commissar = {};
 
   lab.before(function(done) {
-    Commissar = require('../../lib')();
+    Commissar = require('../../lib').createInstance();
 
     Commissar.defineState('/submarines', function() {
       var submarines = ['Red October'];
@@ -18,7 +18,7 @@ lab.experiment('actions', function() {
           submarines = newValue;
           next(submarines);
         }
-      }
+      };
     });
 
     Commissar.defineAction('Add Sub', function(data, state) {

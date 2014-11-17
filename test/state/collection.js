@@ -4,9 +4,9 @@ var expect = require('chai').expect;
 
 lab.experiment('defining state', function() {
   var Commissar = {};
-  
+
   lab.before(function(done) {
-    Commissar = require('../../lib')();
+    Commissar = require('../../lib').createInstance();
 
     Commissar.defineState('/leaders', function() {
       return {
