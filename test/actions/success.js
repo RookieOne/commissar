@@ -19,16 +19,6 @@ lab.experiment('success', function() {
   });
 
   lab.test('should change state', function(done) {
-    var messages = [];
-    // Commissar.subscribe('/message', function(message) {
-    //   messages.push(message);
-    //
-    //   if (messages.length == 2) {
-    //     expect(messages).to.include('Hello Comrade!');
-    //     expect(messages).to.include('Good bye Comrade!');
-    //     done();
-    //   }
-    // });
     Commissar.execute('Set Message').then(function() {
       done();
     });
