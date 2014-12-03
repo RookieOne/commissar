@@ -39,10 +39,11 @@ lab.experiment('actions', function() {
       };
     });
 
-    Commissar.defineAction('Change Sub Name', function(data, state) {
+    Commissar.defineAction('Change Sub Name', function(deferred, data, state) {
       var sub = state.get('/submarines/' + data.id);
       sub.name = data.name;
       state.set('/submarines/' + data.id, sub);
+      deferred.resolve();
     });
 
     done();

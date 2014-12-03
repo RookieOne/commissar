@@ -20,8 +20,9 @@ lab.experiment('sync action', function() {
       };
     });
 
-    Commissar.defineAction('Get Messages', function(data, state) {
+    Commissar.defineAction('Get Messages', function(deferred, data, state) {
       state.set('/message', 'Good bye Comrade!');
+      deferred.resolve();
     });
 
     done();

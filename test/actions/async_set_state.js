@@ -20,9 +20,10 @@ lab.experiment('running query', function() {
       };
     });
 
-    Commissar.defineAction('Get Messages', function(data, state) {
+    Commissar.defineAction('Get Messages', function(deferred, data, state) {
       setTimeout(function() {
         state.set('/message', 'Hold up Comrade!');
+        deferred.resolve();
       }, 100);
     });
 

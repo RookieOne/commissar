@@ -2,7 +2,7 @@ var Lab = require('lab');
 var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;
 
-lab.experiment('default state', function() {
+lab.experiment('dont return undefined', function() {
   var Commissar = {};
 
   lab.before(function(done) {
@@ -10,7 +10,7 @@ lab.experiment('default state', function() {
 
     Commissar.defineState('/message');
 
-    Commissar.defineAction('Get Messages', function(deferred, data, state) {
+    Commissar.defineAction('Set Message', function(deferred, data, state) {
       state.set('/message', 'Hello Comrade!');
       deferred.resolve();
     });
@@ -28,6 +28,6 @@ lab.experiment('default state', function() {
         done();
       }
     });
-    Commissar.execute('Get Messages');
+    Commissar.execute('Set Message');
   });
 });

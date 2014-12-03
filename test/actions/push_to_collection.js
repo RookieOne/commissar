@@ -25,9 +25,10 @@ lab.experiment('actions', function() {
       };
     });
 
-    Commissar.defineAction('Add Sub', function(data, state) {
+    Commissar.defineAction('Add Sub', function(deferred, data, state) {
       var newSub = data;
       state.push('/submarines', newSub);
+      deferred.resolve();
     });
 
     done();

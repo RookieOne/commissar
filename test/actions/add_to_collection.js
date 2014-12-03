@@ -20,11 +20,12 @@ lab.experiment('actions', function() {
       };
     });
 
-    Commissar.defineAction('Add Sub', function(data, state) {
+    Commissar.defineAction('Add Sub', function(deferred, data, state) {
       var newSub = data;
       var submarines = state.get('/submarines');
       submarines.push(newSub);
       state.set('/submarines', submarines);
+      deferred.resolve();
     });
 
     done();
