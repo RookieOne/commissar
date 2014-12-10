@@ -3,7 +3,7 @@ var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;
 var _ = require('underscore');
 
-lab.experiment('actions', function() {
+lab.experiment('collections', function() {
   var Commissar = {};
 
   lab.before(function(done) {
@@ -30,13 +30,13 @@ lab.experiment('actions', function() {
           var sub = _.findWhere(state.submarines, { id: id });
           return sub;
         }
-      }
+      };
     });
 
     done();
   });
 
-  lab.test('define state', function(done) {
+  lab.test('read item', function(done) {
     Commissar.subscribe('/submarines/1', function(submarine) {
       expect(submarine.name).to.equal('Red October');
       done();

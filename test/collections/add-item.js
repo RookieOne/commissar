@@ -2,7 +2,7 @@ var Lab = require('lab');
 var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;
 
-lab.experiment('actions', function() {
+lab.experiment('collections', function() {
   var Commissar = {};
 
   lab.before(function(done) {
@@ -20,7 +20,7 @@ lab.experiment('actions', function() {
       };
     });
 
-    Commissar.defineAction('Add Sub', function(deferred, data, state) {
+    Commissar.defineAction('add-sub', function(deferred, data, state) {
       var newSub = data;
       var submarines = state.get('/submarines');
       submarines.push(newSub);
@@ -31,7 +31,7 @@ lab.experiment('actions', function() {
     done();
   });
 
-  lab.test('add to collection', function(done) {
+  lab.test('add item', function(done) {
     var count = 0;
     Commissar.subscribe('/submarines', function(submarines) {
       count += 1;
@@ -42,6 +42,6 @@ lab.experiment('actions', function() {
         done();
       }
     });
-    Commissar.execute('Add Sub', 'K-19');
+    Commissar.execute('add-sub', 'K-19');
   });
 });
