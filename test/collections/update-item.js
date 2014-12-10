@@ -3,7 +3,7 @@ var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;
 var _ = require('underscore');
 
-lab.experiment('actions', function() {
+lab.experiment('collections', function() {
   var Commissar = {};
 
   lab.before(function(done) {
@@ -39,7 +39,7 @@ lab.experiment('actions', function() {
       };
     });
 
-    Commissar.defineAction('Change Sub Name', function(deferred, data, state) {
+    Commissar.defineAction('change-sub-name', function(deferred, data, state) {
       var sub = state.get('/submarines/' + data.id);
       sub.name = data.name;
       state.set('/submarines/' + data.id, sub);
@@ -49,7 +49,7 @@ lab.experiment('actions', function() {
     done();
   });
 
-  lab.test('update element in collection', function(done) {
+  lab.test('update item', function(done) {
     var count = 0;
     Commissar.subscribe('/submarines/1', function(submarine) {
       count += 1;
@@ -59,6 +59,6 @@ lab.experiment('actions', function() {
       }
     });
 
-    Commissar.execute('Change Sub Name', { id: 1, name: 'Kiev' });
+    Commissar.execute('change-sub-name', { id: 1, name: 'Kiev' });
   });
 });

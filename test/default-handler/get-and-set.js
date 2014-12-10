@@ -2,7 +2,7 @@ var Lab = require('lab');
 var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;
 
-lab.experiment('dont return undefined', function() {
+lab.experiment('default handler', function() {
   var Commissar = {};
 
   lab.before(function(done) {
@@ -10,7 +10,7 @@ lab.experiment('dont return undefined', function() {
 
     Commissar.defineState('/message');
 
-    Commissar.defineAction('Set Message', function(deferred, data, state) {
+    Commissar.defineAction('get-messages', function(deferred, data, state) {
       state.set('/message', 'Hello Comrade!');
       deferred.resolve();
     });
@@ -18,7 +18,7 @@ lab.experiment('dont return undefined', function() {
     done();
   });
 
-  lab.test('should change state', function(done) {
+  lab.test('get and set', function(done) {
     var messages = [];
     Commissar.subscribe('/message', function(message) {
       messages.push(message);
@@ -28,6 +28,6 @@ lab.experiment('dont return undefined', function() {
         done();
       }
     });
-    Commissar.execute('Set Message');
+    Commissar.execute('get-messages');
   });
 });
