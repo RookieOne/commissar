@@ -14,7 +14,7 @@ lab.experiment('running query', function() {
         get: function(params) {
           return message;
         },
-        set: function(params, newValue) {
+        set: function(newValue, params) {
           message = newValue;
         }
       };

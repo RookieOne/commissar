@@ -17,7 +17,7 @@ lab.experiment('collections', function() {
         get: function(params) {
           return state.submarines;
         },
-        set: function(params, newValue) {
+        set: function(newValue, params) {
           state.submarines = newValue;
         }
       };
@@ -30,7 +30,7 @@ lab.experiment('collections', function() {
           var sub = _.findWhere(state.submarines, { id: id });
           return sub;
         },
-        set: function(params, newValue) {
+        set: function(newValue, params) {
           var id = parseInt(params.id);
           var subs = _.reject(state.submarines, function(s) { return s.id == id; });
           subs.push(newValue);

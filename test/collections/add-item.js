@@ -14,7 +14,7 @@ lab.experiment('collections', function() {
         get: function(params) {
           return submarines;
         },
-        set: function(params, newValue) {
+        set: function(newValue, params) {
           submarines = newValue;
         }
       };

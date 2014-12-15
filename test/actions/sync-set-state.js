@@ -2,7 +2,7 @@ var Lab = require('lab');
 var lab = exports.lab = Lab.script();
 var expect = require('chai').expect;
 
-lab.experiment('sync action', function() {
+lab.experiment('actions', function() {
   var Commissar = {};
 
   lab.before(function(done) {
@@ -14,13 +14,13 @@ lab.experiment('sync action', function() {
         get: function(params) {
           return message;
         },
-        set: function(params, newValue) {
+        set: function(newValue, params) {
           message = newValue;
         }
       };
     });
 
-    Commissar.defineAction('Get Messages', function(deferred, data, state) {
+    Commissar.defineAction('get-messages', function(deferred, data, state) {
       state.set('/message', 'Good bye Comrade!');
       deferred.resolve();
     });
@@ -28,7 +28,7 @@ lab.experiment('sync action', function() {
     done();
   });
 
-  lab.test('should change state', function(done) {
+  lab.test('sync set state', function(done) {
     var messages = [];
     Commissar.subscribe('/message', function(message) {
       messages.push(message);
@@ -39,6 +39,6 @@ lab.experiment('sync action', function() {
         done();
       }
     });
-    Commissar.execute('Get Messages');
+    Commissar.execute('get-messages');
   });
 });
